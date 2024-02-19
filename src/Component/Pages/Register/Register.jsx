@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 
 
 const Register = () => {
-    const {createUser}= useContext(AuthContext);
+    const {createUser,updateUserProfile}= useContext(AuthContext);
     
     const handleRegister = event =>{
         event.preventDefault();
@@ -14,11 +15,48 @@ const Register = () => {
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
-        console.log(name,email,password,photo);
+        const confirm = form.confirm.value;
+        console.log(name,email,password,confirm,photo);
+        if(password != confirm){
+          Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: "Password didn't match",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          return;
+      }
         createUser(email,password)
         .then(result=>{
             const registeredUser = result.user;
             console.log(registeredUser);
+            updateUserProfile(name,photo)
+            .then(()=>{
+              const saveUser = {name: name, email:email,photo: photo}
+              fetch('http://localhost:5000/users',{
+                method:"POST",
+                headers:{
+                  'content-type':'application/json'
+                },
+                body:JSON.stringify(saveUser)
+              })
+              .then(res=>res.json())
+              .then(data=> {
+                if(data.insertedId){
+                  Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Your work has been saved',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                }
+              })
+              
+                // navigate('/')
+                  
+            })
         })
         .catch(error=>{
             console.log(error.message);
@@ -62,6 +100,18 @@ const Register = () => {
               type="text"
               placeholder="Password"
               name="password"
+              className="input input-bordered"
+            />
+            
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Confirm Password</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Confirm Password"
+              name="confirm"
               className="input input-bordered"
             />
             

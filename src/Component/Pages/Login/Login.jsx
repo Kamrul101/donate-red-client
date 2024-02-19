@@ -39,10 +39,23 @@ const Login = () => {
    const handleGoogle = () =>{
     signInWithGoogle(googleProvider)
     .then((result) => {
-        const user = result.user;
+        const loggedUser = result.user;
         // setUser(user);
-        console.log(user);
-        navigate(from, {replace:true})
+        console.log(loggedUser);
+        const saveUser = {name: loggedUser.displayName, email:loggedUser.email, photo: loggedUser.photoURL}
+        // console.log(loggedUser.photoURL);
+        fetch('http://localhost:5000/users',{
+                  method:"POST",
+                  headers:{
+                    'content-type':'application/json'
+                  },
+                  body:JSON.stringify(saveUser)
+                })
+                .then(res=>res.json())
+                .then(()=> {
+                    navigate(from, { replace: true });
+                  
+                })
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -88,7 +101,7 @@ const Login = () => {
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
             </form>
-            <p className="my-4 text-center">New to Otaku Let? <Link className="text-orange-600 text-bold" to='/register'>Sign up</Link></p>
+            <p className="my-4 text-center">New to Donate-Red? <Link className="text-orange-600 text-bold" to='/register'>Sign up</Link></p>
             <h1 className="text-center">You can also sign up with</h1>
             <button onClick={handleGoogle} className="btn btn-error btn-outline text-xl"><FaGoogle className="mr-2"></FaGoogle><span>Google</span></button>
           </div>

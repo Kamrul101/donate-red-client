@@ -8,6 +8,7 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 const Navbar = () => {
 
   const {user, logOut} = useContext(AuthContext);
+  
   // const [cart]=useCart();
   const handleLogOut =() =>{
     logOut()
@@ -60,7 +61,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
         {user && (
-            <>
+          <Link to={`/UserProfile`}><>
               {user.photoURL == null ? (
                 <FaUserCircle className="text-5xl mr-2"></FaUserCircle>
               ) : (
@@ -77,7 +78,8 @@ const Navbar = () => {
                   />
                 </div>
               )}
-            </>
+            </></Link>
+            
           )}
         {
             user? <Link onClick={handleLogOut} className="btn btn-error text-white" to='/login'>Logout</Link>:<Link className="btn btn-error text-white" to='/login'>Login</Link>

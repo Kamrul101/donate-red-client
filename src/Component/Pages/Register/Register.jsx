@@ -1,19 +1,36 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
-
+const imageHosting = import.meta.env.VITE_Img;
 
 
 const Register = () => {
+  const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageHosting}`
     const {createUser,updateUserProfile}= useContext(AuthContext);
-    
-    const handleRegister = event =>{
+    const navigate = useNavigate();
+    // console.log(imageHosting);
+    const uploadImageToImgBB = async (imageFile) => {
+      const formData = new FormData();
+      formData.append('image', imageFile);
+  
+      const response = await fetch(image_hosting_url, {
+        method: 'POST',
+        body: formData
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to upload image to ImgBB');
+      }
+  
+      return response.json();
+    };
+    const handleRegister = async event =>{
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
-        const photo = form.photo.value;
+        const photo = form.photo.files[0];
         const password = form.password.value;
         const confirm = form.confirm.value;
         console.log(name,email,password,confirm,photo);
@@ -27,13 +44,18 @@ const Register = () => {
             });
           return;
       }
-        createUser(email,password)
+        try{
+          const imgbbResponse = await uploadImageToImgBB(photo);
+      const imageUrl = imgbbResponse.data.url;
+      // console.log(imageUrl);
+          createUser(email,password)
         .then(result=>{
             const registeredUser = result.user;
             console.log(registeredUser);
-            updateUserProfile(name,photo)
+            updateUserProfile(name,imageUrl)
             .then(()=>{
-              const saveUser = {name: name, email:email,photo: photo}
+              const saveUser = {name: name, email:email,photo: imageUrl}
+              console.log(saveUser);
               fetch('http://localhost:5000/users',{
                 method:"POST",
                 headers:{
@@ -54,13 +76,14 @@ const Register = () => {
                 }
               })
               
-                // navigate('/')
+                navigate('/')
                   
             })
         })
-        .catch(error=>{
+        } catch(error){
             console.log(error.message);
-        })
+        }
+        
         
     }
   return (
@@ -120,12 +143,9 @@ const Register = () => {
             <label className="label">
               <span className="label-text">Photo URL</span>
             </label>
-            <input
-              type="text"
-              placeholder="Photo url"
-              name="photo"
-              className="input input-bordered"
-            />
+            <input type="file" 
+            className="file-input file-input-bordered file-input-info w-full max-w-xs"
+            name="photo" />
             
           </div>
           <div className="form-control mt-6">

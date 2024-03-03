@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 const imageHosting = import.meta.env.VITE_Img;
+import { FaArrowRight } from "react-icons/fa";
+
 
 
 const Register = () => {
@@ -25,6 +27,8 @@ const Register = () => {
   
       return response.json();
     };
+    const formArray = [1,2,3];
+    const [formNo,setFormNo] = useState(formArray[0]);
     const handleRegister = async event =>{
         event.preventDefault();
         const form = event.target;
@@ -87,12 +91,83 @@ const Register = () => {
         
     }
   return (
-    
+
+    // <div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
+    //     <div className="card-body">
+    //     <h1 className="text-5xl font-bold">Sign Up</h1>
+    //       <form onSubmit={handleRegister}>
+    //           <div className="form-control">
+    //         <label className="label">
+    //           <span className="label-text">Name</span>
+    //         </label>
+    //         <input
+    //           type="text"
+    //           placeholder="Your name"
+    //           name="name"
+    //           className="input input-bordered"
+    //         />
+    //       </div>
+    //           <div className="form-control">
+    //         <label className="label">
+    //           <span className="label-text">Email</span>
+    //         </label>
+    //         <input
+    //           type="text"
+    //           placeholder="Email"
+    //           name="email"
+    //           className="input input-bordered"
+    //         />
+    //       </div>
+    //       <div className="form-control">
+    //         <label className="label">
+    //           <span className="label-text">Password</span>
+    //         </label>
+    //         <input
+    //           type="text"
+    //           placeholder="Password"
+    //           name="password"
+    //           className="input input-bordered"
+    //         />
+            
+    //       </div>
+    //       <div className="form-control">
+    //         <label className="label">
+    //           <span className="label-text">Confirm Password</span>
+    //         </label>
+    //         <input
+    //           type="text"
+    //           placeholder="Confirm Password"
+    //           name="confirm"
+    //           className="input input-bordered"
+    //         />
+            
+    //       </div>
+    //       <div className="form-control">
+    //         <label className="label">
+    //           <span className="label-text">Photo URL</span>
+    //         </label>
+    //         <input type="file" 
+    //         className="file-input file-input-bordered file-input-info w-full max-w-xs"
+    //         name="photo" />
+            
+    //       </div>
+    //       <div className="form-control mt-6">
+            
+    //         <input className="btn btn-primary" type="submit" value="Sign up" />
+    //       </div>
+    //       </form>
+    //       <p className="my-4 text-center">Already have an account? <Link className="text-orange-600 text-bold" to='/login'>Login</Link></p>
+          
+    //     </div>
+    //   </div>
       
-      <div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
+      <><div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
         <div className="card-body">
-        <h1 className="text-5xl font-bold">Sign Up</h1>
-          <form onSubmit={handleRegister}>
+          <h1 className="text-5xl font-bold">Sign Up</h1>
+      {
+        formNo === 2 && 
+        
+          <form>
               <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -148,15 +223,87 @@ const Register = () => {
             name="photo" />
             
           </div>
-          <div className="form-control mt-6">
-            
-            <input className="btn btn-primary" type="submit" value="Sign up" />
+          <div className="flex justify-center mt-5">
+            <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">Next<FaArrowRight /></button>
           </div>
-          </form>
-          <p className="my-4 text-center">Already have an account? <Link className="text-orange-600 text-bold" to='/login'>Login</Link></p>
           
-        </div>
+          </form>
+          
+      
+      }
+      {
+        formNo === 1 && 
+        
+          <form>
+              <div className="form-control">
+            <label className="label">
+              <span className="label-text">Contact Number</span>
+            </label>
+            <input
+              type="text"
+              placeholder="+880XXXX-XXXXXX"
+              name="name"
+              className="input input-bordered"
+            />
+          </div>
+              <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Email"
+              name="email"
+              className="input input-bordered"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Password"
+              name="password"
+              className="input input-bordered"
+            />
+            
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Confirm Password</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Confirm Password"
+              name="confirm"
+              className="input input-bordered"
+            />
+            
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input type="file" 
+            className="file-input file-input-bordered file-input-info w-full max-w-xs"
+            name="photo" />
+            
+          </div>
+          <div className="flex justify-center mt-5">
+            <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">Next<FaArrowRight /></button>
+          </div>
+          
+          </form>
+          
+      
+      }
+      <p className="my-4 text-center">Already have an account? <Link className="text-orange-600 text-bold" to='/login'>Login</Link></p>
+          
+        
       </div>
+      </div>
+      </>
    
   );
 };

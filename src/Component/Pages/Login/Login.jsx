@@ -40,10 +40,9 @@ const Login = () => {
     signInWithGoogle(googleProvider)
     .then((result) => {
         const loggedUser = result.user;
-        // setUser(user);
-        console.log(loggedUser);
+        
         const saveUser = {name: loggedUser.displayName, email:loggedUser.email, photo: loggedUser.photoURL}
-        // console.log(loggedUser.photoURL);
+        
         fetch('http://localhost:5000/users',{
                   method:"POST",
                   headers:{
@@ -102,8 +101,7 @@ const Login = () => {
             </div>
             </form>
             <p className="my-4 text-center">New to Donate-Red? <Link className="text-orange-600 text-bold" to='/register'>Sign up</Link></p>
-            <h1 className="text-center">You can also sign up with</h1>
-            <button onClick={handleGoogle} className="btn btn-error btn-outline text-xl"><FaGoogle className="mr-2"></FaGoogle><span>Google</span></button>
+            
           </div>
         </div>
      

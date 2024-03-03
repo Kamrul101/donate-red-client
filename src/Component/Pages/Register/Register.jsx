@@ -47,7 +47,7 @@ const Register = () => {
         try{
           const imgbbResponse = await uploadImageToImgBB(photo);
       const imageUrl = imgbbResponse.data.url;
-      // console.log(imageUrl);
+      
           createUser(email,password)
         .then(result=>{
             const registeredUser = result.user;

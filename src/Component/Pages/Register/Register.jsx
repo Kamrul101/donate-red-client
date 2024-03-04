@@ -159,6 +159,7 @@ const Register = () => {
           <h1 className="text-5xl font-bold">Sign Up</h1>
           {formNo === 2 && (
             <form>
+              {/*Name*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -170,6 +171,7 @@ const Register = () => {
                   className="input input-bordered"
                 />
               </div>
+              {/*email*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -181,6 +183,7 @@ const Register = () => {
                   className="input input-bordered"
                 />
               </div>
+              {/*pass*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
@@ -192,6 +195,7 @@ const Register = () => {
                   className="input input-bordered"
                 />
               </div>
+              {/*Confirm Pass*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Confirm Password</span>
@@ -203,6 +207,7 @@ const Register = () => {
                   className="input input-bordered"
                 />
               </div>
+              {/*Photo File*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Photo URL</span>
@@ -223,6 +228,7 @@ const Register = () => {
           )}
           {formNo === 1 && (
             <form>
+              {/*Contact Number*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Contact Number</span>
@@ -231,7 +237,7 @@ const Register = () => {
                   type="text"
                   placeholder="+880XXXX-XXXXXX"
                   name="contact"
-                  className="input input-bordered"
+                  className="input input-bordered input-primary font-semibold"
                 />
               </div>
               {/*Gender*/}
@@ -267,11 +273,24 @@ const Register = () => {
                   <option>O-</option>
                 </select>
               </div>
-              
+              {/* date of birth */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">
+                    Date of birth
+                  </span>
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  className="input input-bordered border-primary font-semibold"
+                />
+              </div>
+              {/*Navigation*/}
               <div className="flex justify-between mt-5">
                 <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
-                  <FaArrowLeft />Previous
-                  
+                  <FaArrowLeft />
+                  Previous
                 </button>
                 <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600 ">
                   Next

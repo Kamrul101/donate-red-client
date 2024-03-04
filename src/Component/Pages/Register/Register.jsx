@@ -234,11 +234,12 @@ const Register = () => {
                   className="input input-bordered"
                 />
               </div>
+              {/*Gender*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Gender</span>
                 </label>
-                <select className="select select-primary w-full">
+                <select name="gender" className="select select-primary w-full">
                   <option disabled selected>
                     Select Gender
                   </option>
@@ -247,6 +248,26 @@ const Register = () => {
                   <option>Others</option>
                 </select>
               </div>
+              {/*Blood group*/}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Blood Group</span>
+                </label>
+                <select className="select select-primary w-full">
+                  <option disabled selected>
+                    Select Blood Group
+                  </option>
+                  <option>A+</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B-</option>
+                  <option>AB+</option>
+                  <option>AB-</option>
+                  <option>O+</option>
+                  <option>O-</option>
+                </select>
+              </div>
+              
               <div className="flex justify-between mt-5">
                 <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
                   <FaArrowLeft />Previous

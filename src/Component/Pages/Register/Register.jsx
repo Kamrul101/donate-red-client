@@ -152,9 +152,9 @@ const Register = () => {
 
     <>
       <div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
-        <div className="card-body">
+        <div className="card-body !border-red-500">
           <div className="flex justify-center">
-            <ul className="steps">
+            <ul className="steps w-full">
               {formArray.map((v, i) => (
                 <li
                   key={i}
@@ -240,7 +240,7 @@ const Register = () => {
                   </label>
                   <input
                     type="file"
-                    className="file-input file-input-bordered file-input-info w-full max-w-xs"
+                    className="file-input file-input-bordered file-input-info w-full"
                     name="photo"
                     // value={formData.photo}
                     onChange={handleChange}
@@ -249,7 +249,7 @@ const Register = () => {
                 <div className="flex justify-center mt-5">
                   <button
                     onClick={next}
-                    className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600"
+                    className="btn btn-danger w-full bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600"
                   >
                     Next
                     <FaArrowRight />
@@ -445,7 +445,7 @@ const Register = () => {
 
           <p className="my-4 text-center">
             Already have an account?{" "}
-            <Link className="text-orange-600 text-bold" to="/login">
+            <Link className="text-orange-600 border-orange-600 mt-5 text-bold btn hover:bg-primary hover:text-white w-full" to="/login">
               Login
             </Link>
           </p>

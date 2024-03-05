@@ -97,11 +97,11 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input className="btn btn-primary hover:bg-white hover:text-purple-950" type="submit" value="Login" />
             </div>
             </form>
-            <p className="my-4 text-center">New to Donate-Red? <Link className="text-orange-600 text-bold" to='/register'>Sign up</Link></p>
-            
+            <p className="my-4 text-center">New to Donate-Red? </p>
+            <Link className="text-orange-600 text-bold btn border-red-600 hover:bg-red-600 hover:text-white" to='/register'>Sign up</Link>
           </div>
         </div>
      

@@ -16,7 +16,7 @@ const LookDonor = () => {
       .then((data) => setDonor(data));
   }, []);
 
-  //   pagination part  start
+  //pagination part  start
   const [currentPage, setCurrentPage] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(8);
   const totalPages = Math.ceil(totalUsers / usersPerPage);
@@ -30,11 +30,23 @@ const LookDonor = () => {
   //pagination end
   return (
     <>
-      <div className="my-5 w-3/4 mx-auto">
+      <div className="my-5 w-full md:w-3/4 md:mx-auto">
+      
         <h1 className="text-center text-4xl font-bold text-red-600 font-serif my-6">
           Our Donors
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-6 justify-between">
+        <div className=" flex justify-end my-2">
+        <p className="mx-5 font-semibold text-lg mt-2">Show Donors</p>
+        <select className="select select-primary text-lg md:mr-10" value={usersPerPage} onChange={handleSelectChange}>
+
+           {options.map((option) => (
+             <option key={option} value={option}>
+               {option}
+             </option>
+           ))}
+         </select>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-6 md:justify-between">
           {donors.map((donor) => {
             return <DonorCard key={donor._id} donor={donor} />;
           })}
@@ -51,13 +63,7 @@ const LookDonor = () => {
             {number}
           </button>
         ))}
-        <select value={usersPerPage} onChange={handleSelectChange}>
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+        
       </div>
     </>
   );

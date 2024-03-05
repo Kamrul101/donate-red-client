@@ -9,8 +9,8 @@ const DonorCard = ({donor}) => {
     } = donor;
     
   return (
-    <div>
-        <div className="card card-compact w-64 bg-base-100 shadow-xl border-red-600 border-2">
+    <div >
+        <div className="card card-compact w-3/4 mx-auto md:w-64 bg-base-100 shadow-xl border-red-600 border-2">
       <figure>
         <img
           src={photo}

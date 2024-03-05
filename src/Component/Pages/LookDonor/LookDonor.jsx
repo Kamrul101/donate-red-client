@@ -13,10 +13,10 @@ const LookDonor = () => {
       .then((data) => setDonor(data));
   }, []);
   
-    return (
-        <div>
+    return ( 
+        <div className='my-5 w-3/4 mx-auto'> 
             <h1 className='text-center text-4xl font-bold text-red-600 font-serif my-6'>Our Donors</h1>
-            <div className='grid grid-cols-3'>
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-y-6 justify-between'>
                 {
                 donors.map(donor =>{ return <DonorCard key = {donor._id}donor = {donor}/>
                     

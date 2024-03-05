@@ -43,7 +43,23 @@ const Register = () => {
     issue: "",
   });
   const next = () => {
-    setFormNo(formNo + 1);
+    if(formNo===1 && formData.name && formData.email && formData.photo && formData.password && formData.confirm){
+
+      setFormNo(formNo + 1);
+    }
+    else if(formNo===2 && formData.contact && formData.gender && formData.group && formData.date){
+      setFormNo(formNo + 1);
+      
+    }
+    else{
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Fill up all the input",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   };
   const pre = () => {
     setFormNo(formNo - 1);
@@ -59,10 +75,10 @@ const Register = () => {
     event.preventDefault();
     console.log(formData);
     const{
-      name,
-      email,
-      photo,
-      contact,
+    name,
+    email,
+    photo,
+    contact,
     gender,
     group,
     date,
@@ -164,6 +180,7 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="Your name"
                     name="name"
                     className="input input-bordered"
@@ -178,6 +195,7 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="Email"
                     name="email"
                     className="input input-bordered"
@@ -192,6 +210,7 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="Password"
                     name="password"
                     className="input input-bordered"
@@ -206,6 +225,7 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="Confirm Password"
                     name="confirm"
                     className="input input-bordered"
@@ -246,6 +266,7 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="+880XXXX-XXXXXX"
                     name="contact"
                     className="input input-bordered input-primary font-semibold"
@@ -302,6 +323,7 @@ const Register = () => {
                   <input
                     type="date"
                     name="date"
+                    required
                     className="input input-bordered border-primary font-semibold"
                     value={formData.date}
                     onChange={handleChange}
@@ -335,6 +357,7 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="Your Current District"
                     name="district"
                     className="input input-bordered input-primary font-semibold"
@@ -372,6 +395,7 @@ const Register = () => {
                   <input
                     type="date"
                     name="lastDate"
+                    required
                     className="input input-bordered border-primary font-semibold"
                     value={formData.lastDate}
                     onChange={handleChange}
@@ -391,6 +415,7 @@ const Register = () => {
                   </label>
                   <textarea
                     className="textarea textarea-primary"
+                    required
                     placeholder="Bio"
                     name="issue"
                     value={formData.issue}

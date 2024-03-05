@@ -32,7 +32,8 @@ export const router = createBrowserRouter([
         },
         {
           path:"/lookDonor",
-          element:<PrivateRoute><LookDonor></LookDonor></PrivateRoute>
+          element:<PrivateRoute><LookDonor></LookDonor></PrivateRoute>,
+          loader:()=> fetch('http://localhost:5000/totalUsers')
         }
       ]
     },

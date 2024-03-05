@@ -27,6 +27,16 @@ const Register = () => {
   };
   const formArray = [1, 2, 3];
   const [formNo, setFormNo] = useState(formArray[0]);
+  // const [state,setState] =  useState({
+  //   name: '',
+    
+  // })
+  const next =()=>{
+    setFormNo(formNo+1);
+  }
+  const pre =()=>{
+    setFormNo(formNo-1);
+  }
   const handleRegister = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -157,7 +167,7 @@ const Register = () => {
       <div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
         <div className="card-body">
           <h1 className="text-5xl font-bold">Sign Up</h1>
-          {formNo === 2 && (
+          {formNo === 1 && (
             <form>
               {/*Name*/}
               <div className="form-control">
@@ -219,14 +229,14 @@ const Register = () => {
                 />
               </div>
               <div className="flex justify-center mt-5">
-                <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
+                <button onClick={next} className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
                   Next
                   <FaArrowRight />
                 </button>
               </div>
             </form>
           )}
-          {formNo === 1 && (
+          {formNo === 2 && (
             <form>
               {/*Contact Number*/}
               <div className="form-control">
@@ -288,13 +298,79 @@ const Register = () => {
               </div>
               {/*Navigation*/}
               <div className="flex justify-between mt-5">
-                <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
+                <button onClick={pre} className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
                   <FaArrowLeft />
                   Previous
                 </button>
-                <button className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600 ">
+                <button onClick={next} className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600 ">
                   Next
                   <FaArrowRight />
+                </button>
+              </div>
+            </form>
+          )}
+          {formNo === 3 && (
+            <form>
+              {/*District*/}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">District</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Your Current District"
+                  name="district"
+                  className="input input-bordered input-primary font-semibold"
+                />
+              </div>
+              {/*Thana*/}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Thana</span>
+                </label>
+                <select name="gender" className="select select-primary w-full">
+                  <option disabled selected>
+                    Select Thana
+                  </option>
+                  <option>Ramna Model Thana (রমনা থানা)</option>
+                  <option>Motijheel Thana (মতিঝিল থানা)</option>
+                  <option>Dhanmondi Thana (ধানমন্ডি থানা)</option>
+                  <option>Mirpur Thana (মিরপুর থানা)</option>
+                  <option>Pallabi Thana (পল্লবী থানা)</option>
+                  <option>Kafrul Thana (কাফরুল থানা)</option>
+                </select>
+              </div>
+              {/* Last of Donating blood */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">
+                    Last of Donation
+                  </span>
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  className="input input-bordered border-primary font-semibold"
+                />
+                <p className="text-justify text-red-600"><span>*Note: </span>If you haven't given yet, just select <br />minimum 3 month before from todays date </p>
+              </div>
+              {/*Blood related problem*/}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Any issue related to donation</span>
+                </label>
+                <textarea className="textarea textarea-primary" placeholder="Bio" name="issue"></textarea>
+              </div>
+              
+              {/*Navigation*/}
+              <div className="flex justify-between mt-5">
+                <button onClick={pre} className="btn btn-danger bg-red-600 text-white hover:bg-white hover:text-black hover:border-red-600">
+                  <FaArrowLeft />
+                  Previous
+                </button>
+                <button className="btn btn-danger bg-green-600 text-white hover:bg-white hover:text-black hover:border-red-600 ">
+                  Submit
+                  
                 </button>
               </div>
             </form>

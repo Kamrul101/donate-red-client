@@ -13,7 +13,18 @@ const LookDonor = () => {
   const [usersPerPage, setUsersPerPage] = useState(8);
   const totalPages = Math.ceil(totalUsers / usersPerPage);
   const pageNumbers = [...Array(totalPages).keys()];
-  const options = [5, 8, 20];
+  const options = [4, 8, 20];
+
+
+    // Function to handle "Next" button click
+    const handleNext = () => {
+      setCurrentPage(prevPage => prevPage + 1);
+    };
+  
+    // Function to handle "Previous" button click
+    const handlePrevious = () => {
+      setCurrentPage(prevPage => prevPage - 1);
+    };
 
   const handleSelectChange = (event) => {
     setUsersPerPage(parseInt(event.target.value));
@@ -53,18 +64,40 @@ const LookDonor = () => {
         </div>
       </div>
       <div className="text-center my-10">
-        <p>current page: {currentPage}</p>
-        {pageNumbers.map((number) => (
-          <button
-            className={(currentPage==number ? "btn bg-red-500 text-white mx-1": "btn border-red-400 mx-1")}
-            key={number}
-            onClick={() => setCurrentPage(number)}
-          >
-            {number}
-          </button>
-        ))}
-        
-      </div>
+  <p>Current page: {currentPage}</p>
+  {/* previous button */}
+  <button
+    className="btn border-red-400 mx-1"
+    onClick={handlePrevious}
+    disabled={currentPage === 0} // Disable if currentPage is already 0
+  >
+    Previous
+  </button>
+  {pageNumbers.map((number, index) => (
+    <React.Fragment key={number}>
+      {index === 0 || index === pageNumbers.length - 1 || Math.abs(number - currentPage) <= 2 ? (
+        <button
+          className={(currentPage === number ? "btn bg-red-500 text-white mx-1" : "btn border-red-400 mx-1")}
+          onClick={() => setCurrentPage(number)}
+        >
+          {number + 1}
+        </button>
+      ) : index === 1 || index === pageNumbers.length - 2 ? (
+        <span className="mx-1">...</span>
+      ) : null}
+    </React.Fragment>
+  ))}
+  
+  {/* Next button */}
+  <button
+    className="btn border-red-400 mx-1"
+    onClick={handleNext}
+    disabled={currentPage === totalPages - 1} // Disable if currentPage is the last page
+  >
+    Next
+  </button>
+</div>
+
     </>
   );
 };

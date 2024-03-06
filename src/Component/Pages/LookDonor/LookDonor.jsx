@@ -8,14 +8,6 @@ const LookDonor = () => {
   const { user } = useContext(AuthContext);
   const [donors, setDonor] = useState([]);
   const { totalUsers } = useLoaderData();
-
-  const url = `http://localhost:5000/users`;
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setDonor(data));
-  }, []);
-
   //pagination part  start
   const [currentPage, setCurrentPage] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(8);
@@ -28,6 +20,14 @@ const LookDonor = () => {
     setCurrentPage(0);
   };
   //pagination end
+  
+  const url = `http://localhost:5000/users?page=${currentPage}&limit=${usersPerPage}`;
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setDonor(data));
+  }, [currentPage,usersPerPage]);
+
   return (
     <>
       <div className="my-5 w-full md:w-3/4 md:mx-auto">

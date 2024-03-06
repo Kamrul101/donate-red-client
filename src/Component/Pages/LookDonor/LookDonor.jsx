@@ -56,7 +56,7 @@ const LookDonor = () => {
         <p>current page: {currentPage}</p>
         {pageNumbers.map((number) => (
           <button
-            className="btn"
+            className={(currentPage==number ? "btn bg-red-500 text-white mx-1": "btn border-red-400 mx-1")}
             key={number}
             onClick={() => setCurrentPage(number)}
           >

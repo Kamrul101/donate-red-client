@@ -121,7 +121,7 @@ const Register = () => {
             lastDate: lastDate,
             issue: issue };
           console.log(saveUser);
-          fetch("http://localhost:5000/users", {
+          fetch("http://localhost:5173/", {
             method: "POST",
             headers: {
               "content-type": "application/json",

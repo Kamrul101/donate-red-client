@@ -4,16 +4,14 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   const [userProfile, setUserProfile] = useState(null);
-  const url = `http://localhost:5000/users`;
+  const [] = useState();
+  const url = `http://localhost:5000/singleUsers/${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      // .then(data=>setUserProfile(data))
-      .then((data) => {
-        const singleUser = data.find((donor) => donor.email === user.email);
-        setUserProfile(singleUser);
+      .then((data) => { setUserProfile(data);
       });
-  }, [url, user.email]);
+  }, [url]);
 
   return (
     <div>

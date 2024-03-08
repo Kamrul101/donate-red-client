@@ -43,7 +43,7 @@ const Login = () => {
         
         const saveUser = {name: loggedUser.displayName, email:loggedUser.email, photo: loggedUser.photoURL}
         
-        fetch('http://localhost:5000/users',{
+        fetch('http://localhost:5173/',{
                   method:"POST",
                   headers:{
                     'content-type':'application/json'

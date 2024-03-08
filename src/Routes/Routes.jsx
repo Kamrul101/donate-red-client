@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
         {
           path:"/UserProfile",
           element:<PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
-          // loader:({params})=>fetch(`http://localhost:5000/users/${params.id}`)
+          // loader:({params})=>fetch(`http://localhost:5173//${params.id}`)
         },
         {
           path:"/lookDonor",

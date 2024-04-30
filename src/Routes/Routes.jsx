@@ -6,6 +6,7 @@ import Register from "../Component/Pages/Register/Register";
 import UserProfile from "../Component/Pages/Profile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import LookDonor from "../Component/Pages/LookDonor/LookDonor";
+import SingleDonor from "../Component/Pages/LookDonor/singleDonor";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -34,7 +35,12 @@ export const router = createBrowserRouter([
           path:"/lookDonor",
           element:<PrivateRoute><LookDonor></LookDonor></PrivateRoute>,
           loader:()=> fetch('http://localhost:5000/totalUsers')
-        }
+        },
+        {
+          path:"/singleDonor/:id",
+          element:<PrivateRoute><SingleDonor></SingleDonor></PrivateRoute>,
+          loader:({params})=>fetch(`http://localhost:5000/users/${params.id}`)
+        },
       ]
     },
   ]);

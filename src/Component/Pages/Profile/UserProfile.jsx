@@ -3,13 +3,14 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
+  console.log(user.email);
   const [userProfile, setUserProfile] = useState(null);
-  const [] = useState();
   const url = `http://localhost:5000/singleUsers/${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((data) => { setUserProfile(data);
+      .then((data) => { 
+        setUserProfile(data);
       });
   }, [url]);
 

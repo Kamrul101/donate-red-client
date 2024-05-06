@@ -2,7 +2,8 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const SingleDonor = ({params}) => {
-    const singleDonorDetail =  useLoaderData();
+    const singleDonor =  useLoaderData();
+    const singleDonorDetail = singleDonor[0];
     const {
         _id,
         name,
@@ -17,6 +18,7 @@ const SingleDonor = ({params}) => {
     } = singleDonorDetail;
     
     console.log(singleDonorDetail);
+    const lastDonateDate = lastDate.slice(0,10);
     return (
         <div className='md:w-3/4 md:mx-auto my-5'>
            <div className="grid grid-cols-2">
@@ -43,6 +45,10 @@ const SingleDonor = ({params}) => {
               <p className="font-bold text-xl">
                 <span className="text-gray-500 font-semibold">Email:</span>{" "}
                 {email}
+              </p>
+              <p className="font-bold text-xl">
+                <span className="text-gray-500 font-semibold">Last Donated:</span>{" "}
+                {lastDonateDate} <span>({parseInt(dateDiff)} AGO)</span>
               </p>
             </div>
           </div>

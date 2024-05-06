@@ -43,21 +43,30 @@ const Register = () => {
     issue: "",
   });
   const next = () => {
-    if(formNo===1 && formData.name && formData.email && formData.photo && formData.password && formData.confirm){
-
+    if (
+      formNo === 1 &&
+      formData.name &&
+      formData.email &&
+      formData.photo &&
+      formData.password &&
+      formData.confirm
+    ) {
       setFormNo(formNo + 1);
-    }
-    else if(formNo===2 && formData.contact && formData.gender && formData.group && formData.date){
+    } else if (
+      formNo === 2 &&
+      formData.contact &&
+      formData.gender &&
+      formData.group &&
+      formData.date
+    ) {
       setFormNo(formNo + 1);
-      
-    }
-    else{
+    } else {
       Swal.fire({
         position: "top-end",
         icon: "error",
         title: "Fill up all the input",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
     }
   };
@@ -74,20 +83,19 @@ const Register = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     console.log(formData);
-    const{
-    name,
-    email,
-    photo,
-    contact,
-    gender,
-    group,
-    date,
-    district,
-    thana,
-    lastDate,
-    issue,
-    password
-
+    const {
+      name,
+      email,
+      photo,
+      contact,
+      gender,
+      group,
+      date,
+      district,
+      thana,
+      lastDate,
+      issue,
+      password,
     } = formData;
 
     if (formData.password != formData.confirm) {
@@ -108,18 +116,19 @@ const Register = () => {
         const registeredUser = result.user;
         console.log(registeredUser);
         updateUserProfile(name, imageUrl).then(() => {
-          const saveUser = { 
-            name: name, 
+          const saveUser = {
+            name: name,
             email: email,
             photo: imageUrl,
-            contact:contact,
+            contact: contact,
             gender: gender,
             group: group,
             date: date,
             district: district,
-            thana:thana,
+            thana: thana,
             lastDate: lastDate,
-            issue: issue };
+            issue: issue,
+          };
           console.log(saveUser);
           fetch("http://localhost:5000/users", {
             method: "POST",
@@ -149,7 +158,6 @@ const Register = () => {
     }
   };
   return (
-
     <>
       <div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
         <div className="card-body !border-red-500">
@@ -302,17 +310,15 @@ const Register = () => {
                     value={formData.group}
                     onChange={handleChange}
                   >
-                    <option>
-                      Select Blood Group
-                    </option>
-                    <option value="A+">A+</option>
-    <option value="A-">A-</option>
-    <option value="B+">B+</option>
-    <option value="B-">B-</option>
-    <option value="AB+">AB+</option>
-    <option value="AB-">AB-</option>
-    <option value="O+">O+</option>
-    <option value="O-">O-</option>
+                    <option>Select Blood Group</option>
+                    <option value="A Positive">A Positive</option>
+                    <option value="A Negative">A Negative</option>
+                    <option value="B Positive">B Positive</option>
+                    <option value="B Negative">B Negative</option>
+                    <option value="AB Positive">AB Positive</option>
+                    <option value="AB Negative">AB Negative</option>
+                    <option value="O Positive">O Positive</option>
+                    <option value="O Negative">O Negative</option>
                   </select>
                 </div>
                 {/* date of birth */}
@@ -376,15 +382,13 @@ const Register = () => {
                     value={formData.thana}
                     onChange={handleChange}
                   >
-                    <option>
-                      Select Thana
-                    </option>
-                    <option>Ramna Model Thana (রমনা থানা)</option>
-                    <option>Motijheel Thana (মতিঝিল থানা)</option>
-                    <option>Dhanmondi Thana (ধানমন্ডি থানা)</option>
-                    <option>Mirpur Thana (মিরপুর থানা)</option>
-                    <option>Pallabi Thana (পল্লবী থানা)</option>
-                    <option>Kafrul Thana (কাফরুল থানা)</option>
+                    <option>Select Thana</option>
+                    <option>Ramna Model Thana</option>
+                    <option>Motijheel Thana</option>
+                    <option>Dhanmondi Thana</option>
+                    <option>Mirpur Thana</option>
+                    <option>Pallabi Thana</option>
+                    <option>Kafrul Thana</option>
                   </select>
                 </div>
                 {/* Last of Donating blood */}
@@ -445,7 +449,10 @@ const Register = () => {
 
           <p className="my-4 text-center">
             Already have an account?{" "}
-            <Link className="text-orange-600 border-orange-600 mt-5 text-bold btn hover:bg-primary hover:text-white w-full" to="/login">
+            <Link
+              className="text-orange-600 border-orange-600 mt-5 text-bold btn hover:bg-primary hover:text-white w-full"
+              to="/login"
+            >
               Login
             </Link>
           </p>

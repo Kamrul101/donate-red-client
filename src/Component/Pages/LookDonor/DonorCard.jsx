@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DonorCard = ({ donor }) => {
-  const { _id, name, email, photo, group, dateDiff, thana } = donor;
+  const { _id, name, email, photo, group, dateDiff, thana ,lastDate} = donor;
+  const lastDonateDate = lastDate.slice(0,10);
 
   return (
     <div>
@@ -15,6 +16,7 @@ const DonorCard = ({ donor }) => {
           <h2 className="card-title">{name}</h2>
           <h2 className="card-title">Blood Group: {group}</h2>
           <h3>{thana}</h3>
+          <h3>Last Donated: {lastDonateDate}</h3>
           <div className="flex justify-between">
             <div className="card-actions justify-end">
               <button className="btn btn-primary">

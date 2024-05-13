@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaTrashAlt, FaUserShield, FaUserTie } from "react-icons/fa";
 import useReq from '../../../Hooks/useReq';
 import { AuthContext } from '../../../Providers/AuthProviders';
+import { Link } from 'react-router-dom';
 const Requests = () => {
     const { user } = useContext(AuthContext);
     const [allReq,loading] = useReq();
@@ -17,7 +18,7 @@ const Requests = () => {
         return <div>Loading..</div>
       }
     return (
-        <div className='md:w-3/4 md:mx-auto'>
+        <div className='md:w-3/4 md:mx-auto my-5 border-2 border-red-200 rounded' >
          <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -28,6 +29,7 @@ const Requests = () => {
               <th>Name</th>
               <th>Email</th>
               <th>State</th>
+              <th>Donor Profile</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +50,9 @@ const Requests = () => {
                     <td>{r.donorEmail}</td>
                     
                     <td><button className={`btn ${r.state==="requested"? "bg-[#f97316] text-white" : "bg-[#16a34a] text-white"}`}>{r.state==="requested"? "Requested" : "Accepted"}</button></td>
+                    <td><button className="btn btn-primary">
+                <Link to={`/singleDonor/${r.donorID}`}>See Profile</Link>
+              </button></td>
                   </tr>)
             }
             

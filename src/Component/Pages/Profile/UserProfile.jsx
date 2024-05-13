@@ -1,18 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import useProfile from "../../../Hooks/useProfile";
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user.email);
-  const [userProfile, setUserProfile] = useState(null);
-  const url = `http://localhost:5000/singleUsers/${user?.email}`;
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => { 
-        setUserProfile(data);
-      });
-  }, [url]);
+  const [userProfile] = useProfile();
+  
 
   return (
     <div>

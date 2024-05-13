@@ -18,6 +18,7 @@ const Navbar = () => {
     const navOption = <>
     <li className="hover:bg-slate-300 rounded-lg"><Link to='/'>Home</Link></li>
     <li className="hover:bg-slate-300 rounded-lg"><Link to='/lookDonor'>Look for Donor</Link></li>
+    <li className="hover:bg-slate-300 rounded-lg"><Link to='/request'>Sent Requests</Link></li>
     
     </>
   return (

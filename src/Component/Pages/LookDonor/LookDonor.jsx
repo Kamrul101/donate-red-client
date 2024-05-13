@@ -33,13 +33,13 @@ const LookDonor = () => {
 
   const [group, setGroup] = useState('');
   const [thana, setThana] = useState('');
-
-  const url = `http://localhost:5000/users?page=${currentPage}&limit=${usersPerPage}&group=${group}&thana=${thana}`;
+  const email = user?.email;
+  const url = `http://localhost:5000/users?page=${currentPage}&limit=${usersPerPage}&group=${group}&thana=${thana}&email=${email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDonor(data));
-  }, [currentPage, usersPerPage, group, thana]);
+  }, [currentPage, usersPerPage, group, thana,email]);
 
   const handleDropdownChange = (event) => {
     const { name, value } = event.target;

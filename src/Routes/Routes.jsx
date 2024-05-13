@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import LookDonor from "../Component/Pages/LookDonor/LookDonor";
 import SingleDonor from "../Component/Pages/LookDonor/singleDonor";
 import Requests from "../Component/Pages/Requests/Requests";
+import DonateRequest from "../Component/Pages/DonateRequest/DonateRequest";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
         {
           path:"/request",
           element:<PrivateRoute><Requests></Requests></PrivateRoute>
+        },
+        {
+          path:"/donateRequest",
+          element: <PrivateRoute><DonateRequest></DonateRequest></PrivateRoute>
         }
       ]
     },

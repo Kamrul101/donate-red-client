@@ -21,11 +21,10 @@ const SingleDonor = () => {
         thana,
         lastDate,
     } = singleDonorDetail;
-    
     const [reqSent, setReqSent] = useState(false);
     const [req, setReq] = useState(null);
     const [loading, setLoading] = useState(true);
-  const url = `http://localhost:5000/request/${_id}`;
+  const url = `http://localhost:5000/request/${_id}?email=${user.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -39,8 +38,6 @@ const SingleDonor = () => {
       setReqSent(true);
     }
   }, [req, loading]); // Empty dependency array ensures this runs only once on mount
-  
-    console.log(req);
     const handleClick= () =>{
       const reqData = {
         seekerEmail : user?.email,

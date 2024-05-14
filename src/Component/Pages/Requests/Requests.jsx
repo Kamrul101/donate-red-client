@@ -15,7 +15,9 @@ const Requests = () => {
       }, [allReq, loading]);
       console.log(filterData);
       if(filterData === null){
-        return <div>Loading..</div>
+        return <div className="flex justify-center items-center h-screen">
+        <div className="loading loading-ring loading-lg"></div>
+    </div>
       }
     return (
         <div className='md:w-3/4 md:mx-auto my-5 border-2 border-red-200 rounded' >

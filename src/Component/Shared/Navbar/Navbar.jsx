@@ -25,7 +25,9 @@ const Navbar = () => {
       }, [allReq, loading,user?.email]);
 
       if(filterData === null){
-        return <div>Loading..</div>
+        return <div className="flex justify-center items-center h-screen">
+        <div className="loading loading-ring loading-lg"></div>
+    </div>
       }
       const request = filterData.length;
       console.log(request);

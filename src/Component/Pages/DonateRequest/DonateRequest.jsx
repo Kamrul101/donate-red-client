@@ -18,36 +18,65 @@ const DonateRequest = () => {
         }
       }, [allReq, loading]);
       const handleUpdateState = (id, newState) => {
-        fetch(`http://localhost:5000/request/${id}/state`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ state: newState })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                setFilterData(prevData =>
-                    prevData.map(req =>
-                        req._id === id ? { ...req, state: newState } : req
-                    )
-                );
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: `Request ${newState}`,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+        if (newState === "rejected") {
+            fetch(`http://localhost:5000/request/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    setFilterData(prevData =>
+                        prevData.filter(req => req._id !== id)
+                    );
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Request Rejected and Removed",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        } else {
+            fetch(`http://localhost:5000/request/${id}/state`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ state: newState })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    setFilterData(prevData =>
+                        prevData.map(req =>
+                            req._id === id ? { ...req, state: newState } : req
+                        )
+                    );
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Request ${newState}`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
     };
       if(filterData === null){
-        return <div>Loading..</div>
+        return <div className="flex justify-center items-center h-screen">
+        <div className="loading loading-ring loading-lg"></div>
+    </div>
       }
     return (
         <div className='md:w-3/4 md:mx-auto my-5 border-2 border-red-200 rounded' >

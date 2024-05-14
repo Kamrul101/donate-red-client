@@ -3,13 +3,12 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
 import useProfile from '../../../Hooks/useProfile';
-import useReq from '../../../Hooks/useReq';
+
 
 const SingleDonor = () => {
     const singleDonor =  useLoaderData();
     const {user} = useContext(AuthContext);
     const [userProfile] = useProfile();
-    // const [req] = useReq();
     const singleDonorDetail = singleDonor[0];
     const {
         _id,
@@ -25,7 +24,7 @@ const SingleDonor = () => {
     const [reqSent, setReqSent] = useState(false);
     const [req, setReq] = useState(null);
     const [loading, setLoading] = useState(true);
-  const url = `http://localhost:5000/request/${_id}?email=${user.email}`;
+  const url = `http://localhost:5000/request/${_id}?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -35,6 +34,7 @@ const SingleDonor = () => {
       });
   }, [url]);
   useEffect(() => {
+    
     if (!loading && req.statusReq === true) {
       setReqSent(true);
     }
@@ -103,6 +103,13 @@ const SingleDonor = () => {
               <p className="font-bold text-xl">
                 <span className="text-gray-500 font-semibold">Email:</span>{" "}
                 {email}
+              </p>
+              <p className="font-bold text-xl">
+                <span className="text-gray-500 font-semibold">Contact:</span>{" "}
+                <span className='text-red-400'>{reqSent?(req?.state==="accepted"? contact :"Please wait until accept"):"Send request to get contact"}</span>
+                
+                
+                
               </p>
               <p className="font-bold text-xl">
                 <span className="text-gray-500 font-semibold">Last Donated:</span>{" "}

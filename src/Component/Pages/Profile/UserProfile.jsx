@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import useProfile from "../../../Hooks/useProfile";
+import useReq from "../../../Hooks/useReq";
 
 const UserProfile = () => {
   const [userProfile] = useProfile();

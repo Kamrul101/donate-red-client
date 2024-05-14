@@ -108,7 +108,7 @@ const DonateRequest = () => {
                   </div>
                 </div></td>
                     <td>{r.donorName}</td>
-                    <td>{r.donorEmail}</td>
+                    <td>{r.seekerEmail}</td>
                     <td>{r.state  === "requested"? (<div>
                     <button 
                     className='btn bg-green-700 text-white hover:text-black text-xl'

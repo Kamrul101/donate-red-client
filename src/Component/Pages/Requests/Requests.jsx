@@ -30,6 +30,7 @@ const Requests = () => {
               <th>User Image</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Donor Contact</th>
               <th>State</th>
               <th>Donor Profile</th>
             </tr>
@@ -48,10 +49,12 @@ const Requests = () => {
                     </div>
                   </div>
                 </div></td>
-                    <td>{r.donorName}</td>
-                    <td>{r.donorEmail}</td>
+                    <td className='font-semibold'>{r.donorName}</td>
+                    <td className='font-semibold'>{r.donorEmail}</td>
+                    <td className='font-semibold'>{r.state==="accepted"?r.donorContact:"Please wait till accept.."}</td>
                     
-                    <td><button className={`btn ${r.state==="requested"? "bg-[#f97316] text-white" : "bg-[#16a34a] text-white"}`}>{r.state==="requested"? "Requested" : "Accepted"}</button></td>
+                    <td><button className={`btn ${r.state==="requested"? "bg-[#f97316] text-white" : "bg-[#16a34a] text-white"}`}>
+                      {r.state==="requested"? "Requested" : "Accepted"}</button></td>
                     
                     <td><button className="btn btn-primary">
                 <Link to={`/singleDonor/${r.donorID}`}>See Profile</Link>

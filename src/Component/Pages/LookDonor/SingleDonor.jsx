@@ -20,6 +20,7 @@ const SingleDonor = () => {
         dateDiff,
         thana,
         lastDate,
+        contact
     } = singleDonorDetail;
     const [reqSent, setReqSent] = useState(false);
     const [req, setReq] = useState(null);
@@ -47,6 +48,7 @@ const SingleDonor = () => {
         donorPhoto: photo,
         donorEmail: email,
         state: "requested",
+        donorContact: contact
       };
       fetch("http://localhost:5000/request", {
       method: "POST",

@@ -50,6 +50,7 @@ const Requests = () => {
                     <td>{r.donorEmail}</td>
                     
                     <td><button className={`btn ${r.state==="requested"? "bg-[#f97316] text-white" : "bg-[#16a34a] text-white"}`}>{r.state==="requested"? "Requested" : "Accepted"}</button></td>
+                    
                     <td><button className="btn btn-primary">
                 <Link to={`/singleDonor/${r.donorID}`}>See Profile</Link>
               </button></td>

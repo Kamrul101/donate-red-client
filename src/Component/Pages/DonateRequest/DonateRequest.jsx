@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import useReq from '../../../Hooks/useReq';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import { Link } from 'react-router-dom';
+import { FaCheck, FaUserCircle } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 
 const DonateRequest = () => {
 
@@ -49,8 +51,8 @@ const DonateRequest = () => {
                 </div></td>
                     <td>{r.donorName}</td>
                     <td>{r.donorEmail}</td>
-                    
-                    <td><button className={`btn ${r.state==="requested"? "bg-[#f97316] text-white" : "bg-[#16a34a] text-white"}`}>{r.state==="requested"? "Requested" : "Accepted"}</button></td>
+                    <td>{r.state  === "requested"? (<div><button className='btn bg-green-700 text-white hover:text-black text-xl'><FaCheck />  </button> <button className='btn bg-red-500 text-white hover:text-black text-xl'>
+                        <FaXmark/></button></div>): (r.state===accepted ?<button>Accepted</button>: <button > Rejected</button>) }</td>
                     <td><button className="btn btn-primary">
                 <Link to={`/singleDonor/${r.donorID}`}>See Profile</Link>
               </button></td>

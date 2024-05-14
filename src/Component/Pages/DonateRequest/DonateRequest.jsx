@@ -4,6 +4,7 @@ import { AuthContext } from '../../../Providers/AuthProviders';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaUserCircle } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import Swal from 'sweetalert2';
 
 const DonateRequest = () => {
 
@@ -16,7 +17,35 @@ const DonateRequest = () => {
           setFilterData(data);
         }
       }, [allReq, loading]);
-      console.log(filterData);
+      const handleUpdateState = (id, newState) => {
+        fetch(`http://localhost:5000/request/${id}/state`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ state: newState })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                setFilterData(prevData =>
+                    prevData.map(req =>
+                        req._id === id ? { ...req, state: newState } : req
+                    )
+                );
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Request ${newState}`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    };
       if(filterData === null){
         return <div>Loading..</div>
       }
@@ -51,8 +80,16 @@ const DonateRequest = () => {
                 </div></td>
                     <td>{r.donorName}</td>
                     <td>{r.donorEmail}</td>
-                    <td>{r.state  === "requested"? (<div><button className='btn bg-green-700 text-white hover:text-black text-xl'><FaCheck />  </button> <button className='btn bg-red-500 text-white hover:text-black text-xl'>
-                        <FaXmark/></button></div>): (r.state===accepted ?<button>Accepted</button>: <button > Rejected</button>) }</td>
+                    <td>{r.state  === "requested"? (<div>
+                    <button 
+                    className='btn bg-green-700 text-white hover:text-black text-xl'
+                    onClick={() => handleUpdateState(r._id, "accepted")}
+                    ><FaCheck /></button> 
+                    <button 
+                    className='btn bg-red-500 text-white hover:text-black text-xl'
+                    onClick={() => handleUpdateState(r._id, "rejected")}>
+                    <FaXmark/></button>
+                    </div>):(r.state==="accepted" ?<button className='btn bg-green-700 text-white'>Accepted</button>: <button className='btn btn-error' > Rejected</button>) }</td>
                     <td><button className="btn btn-primary">
                 <Link to={`/singleDonor/${r.donorID}`}>See Profile</Link>
               </button></td>

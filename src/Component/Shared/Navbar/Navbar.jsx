@@ -22,7 +22,7 @@ const Navbar = () => {
           const data = allReq.filter(fReq=> fReq.donorEmail === user?.email)
           setFilterData(data);
         }
-      }, [allReq, loading]);
+      }, [allReq, loading,user?.email]);
 
       if(filterData === null){
         return <div>Loading..</div>

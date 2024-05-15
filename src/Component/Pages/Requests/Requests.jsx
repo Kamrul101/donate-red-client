@@ -13,7 +13,7 @@ const Requests = () => {
           setFilterData(data);
         }
       }, [allReq, loading]);
-      console.log(filterData);
+      
       if(filterData === null){
         return <div className="flex justify-center items-center h-screen">
         <div className="loading loading-ring loading-lg"></div>

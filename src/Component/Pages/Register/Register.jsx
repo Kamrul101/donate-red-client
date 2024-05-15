@@ -9,7 +9,7 @@ const Register = () => {
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageHosting}`;
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-  // console.log(imageHosting);
+  
   const uploadImageToImgBB = async (imageFile) => {
     const formData = new FormData();
     formData.append("image", imageFile);
@@ -82,7 +82,7 @@ const Register = () => {
   };
   const handleRegister = async (event) => {
     event.preventDefault();
-    console.log(formData);
+   
     const {
       name,
       email,
@@ -114,7 +114,7 @@ const Register = () => {
 
       createUser(email, password).then((result) => {
         const registeredUser = result.user;
-        console.log(registeredUser);
+        
         updateUserProfile(name, imageUrl).then(() => {
           const saveUser = {
             name: name,
@@ -129,7 +129,7 @@ const Register = () => {
             lastDate: lastDate,
             issue: issue,
           };
-          console.log(saveUser);
+          
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {

@@ -30,7 +30,7 @@ const Navbar = () => {
     </div>
       }
       const request = filterData.length;
-      console.log(request);
+      
 
   const navOption = (
     <>

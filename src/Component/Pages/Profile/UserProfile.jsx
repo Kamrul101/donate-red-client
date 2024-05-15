@@ -4,11 +4,18 @@ import useProfile from "../../../Hooks/useProfile";
 import useReq from "../../../Hooks/useReq";
 
 const UserProfile = () => {
-  const [userProfile] = useProfile();
+  const [profile,loading] = useProfile();
+  if(loading && profile=== null){
+    return <div className="flex justify-center items-center h-screen">
+    <div className="loading loading-ring loading-lg"></div>
+</div>
+  }
+  const userProfile = profile[0];
+  console.log(userProfile);
   
 
   return (
-    <div>
+    <div className="md:w-3/4 md:mx-auto my-5">
       {userProfile && (
         <>
           <div className="grid grid-cols-2">
@@ -27,8 +34,11 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="mt-6 flex justify-center">
-            <button className="btn-error text-white p-4 text-4xl  items-center rounded-xl">
-              Edit Information
+            <button 
+            className={`btn text-xl font-bold  items-center rounded-xl ${userProfile.dateDiff>=90 ? "bg-green-600 text-white": "bg-gray-600 text-black"}`}
+            disabled={userProfile.dateDiff>=90 ? false : true}
+            >
+              Donated Today
             </button>
           </div>
         </>

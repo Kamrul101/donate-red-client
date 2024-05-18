@@ -1,16 +1,19 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate} from "react-router-dom";
-import { FaBeer,FaGoogle  } from 'react-icons/fa';
+import { FaBeer,FaEye,FaEyeSlash,FaGoogle  } from 'react-icons/fa';
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { GoogleAuthProvider } from "firebase/auth";
-
-
+import toggle from './toggle.css'
 const Login = () => {
 
     const googleProvider = new GoogleAuthProvider();
     
    const {signInUser,signInWithGoogle} = useContext(AuthContext);
+   const [showPassword, setShowPassword] = useState(false);
 
+   const togglePasswordVisibility = () => {
+     setShowPassword(!showPassword);
+   };
    const navigate = useNavigate();
    const location = useLocation();
    const from = location.state?.from?.pathname || '/';
@@ -27,12 +30,13 @@ const Login = () => {
     signInUser(email,password)
     .then(result =>{
       const loggedUser = result.user;
+          
       console.log(loggedUser);
       navigate(from, {replace:true})
     })
     .catch(error=>{
       
-      setError('Email or password did not match')
+      setError('Email or password did not match',error)
     })
 
    }
@@ -82,18 +86,27 @@ const Login = () => {
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
+                
               </label>
               <input
-                type="text"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="password"
                 name="password"
                 className="input input-bordered"
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
+
+             
+            </div>
+            <div className="password-toggle">
+              <label className="cursor-pointer password-toggle-label">
+        <input
+          type="checkbox"
+          checked={showPassword}
+          className="checkbox-primary"
+          onChange={togglePasswordVisibility}
+        />
+        <span className="label-text ml-2">{showPassword ? 'Hide' : 'Show'} Password</span>
+      </label>
             </div>
             <div className="form-control mt-6">
               

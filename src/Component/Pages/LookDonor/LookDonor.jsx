@@ -2,18 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import DonorCard from "./DonorCard";
 import { useLoaderData } from "react-router-dom";
-// import DonorCard from './DonorCard';
+
 
 const LookDonor = () => {
-  const { user } = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
   const [donors, setDonor] = useState([]);
   const { totalUsers } = useLoaderData();
+  
   //pagination part  start
   const [currentPage, setCurrentPage] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(8);
   const totalPages = Math.ceil(totalUsers / usersPerPage);
   const pageNumbers = [...Array(totalPages).keys()];
   const options = [4, 8, 20];
+
 
   // Function to handle "Next" button click
   const handleNext = () => {
@@ -41,6 +43,8 @@ const LookDonor = () => {
       .then((data) => setDonor(data));
   }, [currentPage, usersPerPage, group, thana,email]);
 
+  
+  
 
   const handleDropdownChange = (event) => {
     const { name, value } = event.target;
@@ -58,8 +62,8 @@ const LookDonor = () => {
         <h1 className="text-center text-4xl font-bold text-red-600 font-serif my-6">
           Our Donors
         </h1>
-        <div>
-          <div className="join">
+        <div className="flex md:justify-between flex-col md:flex-row">
+          <div className="join mx-5">
             <select name="group" value={group} onChange={handleDropdownChange} className="select select-primary join-item">
               <option disabled selected>
                 Blood Group
@@ -88,7 +92,7 @@ const LookDonor = () => {
               <option value="Kafrul Thana">Kafrul Thana</option>
             </select>
           </div>
-          <div className=" flex justify-end my-2">
+          <div className=" flex md:justify-end my-2">
             <p className="mx-5 font-semibold text-lg mt-2">Show Donors</p>
             <select
               className="select select-primary text-lg md:mr-10"
@@ -111,7 +115,7 @@ const LookDonor = () => {
         </div>
       </div>
       <div className="text-center my-10">
-        <p>Current page: {currentPage}</p>
+        
         {/* previous button */}
         <button
           className="btn border-red-400 mx-1"

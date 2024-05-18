@@ -4,12 +4,17 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 const imageHosting = import.meta.env.VITE_Img;
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import toggle from '../Login/toggle.css'
 
 const Register = () => {
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageHosting}`;
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-  
+  const [showPassword, setShowPassword] = useState(false);
+
+   const togglePasswordVisibility = () => {
+     setShowPassword(!showPassword);
+   };
   const uploadImageToImgBB = async (imageFile) => {
     const formData = new FormData();
     formData.append("image", imageFile);
@@ -147,10 +152,13 @@ const Register = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                
               }
             });
 
-          navigate("/");
+          navigate("/UserProfile");
+          window.location.reload();
+          
         });
       });
     } catch (error) {
@@ -217,7 +225,7 @@ const Register = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     placeholder="Password"
                     name="password"
@@ -232,7 +240,7 @@ const Register = () => {
                     <span className="label-text">Confirm Password</span>
                   </label>
                   <input
-                    type="text"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     placeholder="Confirm Password"
                     name="confirm"
@@ -241,6 +249,17 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="password-toggle">
+              <label className="cursor-pointer password-toggle-label">
+        <input
+          type="checkbox"
+          checked={showPassword}
+          className="checkbox-primary"
+          onChange={togglePasswordVisibility}
+        />
+        <span className="label-text ml-2 font-semibold">{showPassword ? 'Hide' : 'Show'} Password</span>
+      </label>
+            </div>
                 {/*Photo File*/}
                 <div className="form-control">
                   <label className="label">

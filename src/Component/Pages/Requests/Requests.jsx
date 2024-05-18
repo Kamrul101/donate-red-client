@@ -27,9 +27,9 @@ const Requests = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>User Image</th>
-              <th>Name</th>
-              <th>Email</th>
+              <th>Donor Image</th>
+              <th>Donor Name</th>
+              <th>Donor Email</th>
               <th>Donor Contact</th>
               <th>State</th>
               <th>Donor Profile</th>

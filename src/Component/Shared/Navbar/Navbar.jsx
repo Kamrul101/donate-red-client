@@ -50,7 +50,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-opacity-50 bg-red-800 text-white py-1">
+      <div className="navbar bg-opacity-50 bg-red-600 text-white py-1">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -114,7 +114,7 @@ const Navbar = () => {
           {user ? (
             <Link
               onClick={handleLogOut}
-              className="btn btn-error text-white"
+              className="btn bg-red-700 border-none text-white"
               to="/login"
             >
               Logout

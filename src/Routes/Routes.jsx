@@ -6,9 +6,9 @@ import Register from "../Component/Pages/Register/Register";
 import UserProfile from "../Component/Pages/Profile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import LookDonor from "../Component/Pages/LookDonor/LookDonor";
-import SingleDonor from "../Component/Pages/LookDonor/singleDonor";
 import Requests from "../Component/Pages/Requests/Requests";
 import DonateRequest from "../Component/Pages/DonateRequest/DonateRequest";
+import SingleDonor from "../Component/Pages/LookDonor/SingleDonor";
 export const router = createBrowserRouter([
     {
       path: "/",

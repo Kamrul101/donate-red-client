@@ -36,12 +36,12 @@ export const router = createBrowserRouter([
         {
           path:"/lookDonor",
           element:<PrivateRoute><LookDonor></LookDonor></PrivateRoute>,
-          loader:()=> fetch('http://localhost:5000/totalUsers')
+          loader:()=> fetch('https://donate-red-server.vercel.app/totalUsers')
         },
         {
           path:"/singleDonor/:id",
           element:<PrivateRoute><SingleDonor></SingleDonor></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/users/${params.id}`)
+          loader:({params})=>fetch(`https://donate-red-server.vercel.app/users/${params.id}`)
         },
         {
           path:"/request",

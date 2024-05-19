@@ -19,7 +19,7 @@ const DonateRequest = () => {
       }, [allReq, loading]);
       const handleUpdateState = (id, newState) => {
         if (newState === "rejected") {
-            fetch(`http://localhost:5000/request/${id}`, {
+            fetch(`https://donate-red-server.vercel.app/request/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -44,7 +44,7 @@ const DonateRequest = () => {
                 console.error("Error:", error);
             });
         } else {
-            fetch(`http://localhost:5000/request/${id}/state`, {
+            fetch(`https://donate-red-server.vercel.app/request/${id}/state`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

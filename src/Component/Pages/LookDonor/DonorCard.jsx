@@ -7,10 +7,10 @@ const DonorCard = ({ donor }) => {
 
   return (
     <div>
-      <div className="card card-compact w-3/4 mx-auto md:w-72 bg-gray-300 
-      shadow-md shadow-red-700 border-red-600 border-2">
+      <div className="card card-compact w-3/4 mx-auto md:w-72 
+      shadow-md shadow-red-300 border-rose-200 border-2">
         <figure>
-          <img src={photo} alt="Shoes" className="w-52 h-64 mt-2 rounded-md" />
+          <img src={photo} alt="Shoes" className="w-52 h-64 mt-2 rounded-md bg-cyan-200" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>

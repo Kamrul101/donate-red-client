@@ -26,7 +26,7 @@ const { user} = useContext(AuthContext);
           applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
         });
         const subscriptionWithEmail = { subscription , email: user?.email};
-        await fetch('http://localhost:5000/subscribe', {
+        await fetch('https://donate-red-server.vercel.app/subscribe', {
           method: 'POST',
           body: JSON.stringify(subscriptionWithEmail),
           headers: {

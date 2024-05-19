@@ -3,19 +3,17 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import DonorCard from "./DonorCard";
 import { useLoaderData } from "react-router-dom";
 
-
 const LookDonor = () => {
-  const { user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [donors, setDonor] = useState([]);
   const { totalUsers } = useLoaderData();
-  
+
   //pagination part  start
   const [currentPage, setCurrentPage] = useState(0);
   const [usersPerPage, setUsersPerPage] = useState(8);
   const totalPages = Math.ceil(totalUsers / usersPerPage);
   const pageNumbers = [...Array(totalPages).keys()];
   const options = [4, 8, 20];
-
 
   // Function to handle "Next" button click
   const handleNext = () => {
@@ -33,28 +31,24 @@ const LookDonor = () => {
   };
   //pagination end
 
-  const [group, setGroup] = useState('');
-  const [thana, setThana] = useState('');
+  const [group, setGroup] = useState("");
+  const [thana, setThana] = useState("");
   const email = user?.email;
-  const url = `http://localhost:5000/users?page=${currentPage}&limit=${usersPerPage}&group=${group}&thana=${thana}&email=${email}`;
+  const url = `https://donate-red-server.vercel.app/users?page=${currentPage}&limit=${usersPerPage}&group=${group}&thana=${thana}&email=${email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDonor(data));
-  }, [currentPage, usersPerPage, group, thana,email]);
-
-  
-  
+  }, [currentPage, usersPerPage, group, thana, email]);
 
   const handleDropdownChange = (event) => {
     const { name, value } = event.target;
-    if (name === 'group') {
+    if (name === "group") {
       setGroup(value);
-    } else if (name === 'thana') {
+    } else if (name === "thana") {
       setThana(value);
     }
   };
-  
 
   return (
     <>
@@ -64,7 +58,12 @@ const LookDonor = () => {
         </h1>
         <div className="flex md:justify-between flex-col md:flex-row">
           <div className="join mx-5">
-            <select name="group" value={group} onChange={handleDropdownChange} className="select select-primary join-item">
+            <select
+              name="group"
+              value={group}
+              onChange={handleDropdownChange}
+              className="select select-primary join-item"
+            >
               <option disabled selected>
                 Blood Group
               </option>
@@ -78,18 +77,25 @@ const LookDonor = () => {
               <option value="O Negative">O Negative</option>
             </select>
             <select
-              name="thana" value={thana} onChange={handleDropdownChange}
+              name="thana"
+              value={thana}
+              onChange={handleDropdownChange}
               className="select select-primary w-full join-item"
               // value={formData.thana}
               // onChange={handleChange}
             >
-              <option disabled selected>Select Thana</option>
+              <option disabled selected>
+                Select Thana
+              </option>
               <option value="Ramna Model Thana">Ramna Model Thana</option>
               <option value="Motijheel Thana">Motijheel Thana</option>
               <option value="Dhanmondi Thana">Dhanmondi Thana</option>
               <option value="Mirpur Thana">Mirpur Thana</option>
               <option value="Pallabi Thana">Pallabi Thana</option>
               <option value="Kafrul Thana">Kafrul Thana</option>
+              <option>Cantonment Thana</option>
+              <option>Jatrabari Thana</option>
+              <option>Tejgaon Thana</option>
             </select>
           </div>
           <div className=" flex md:justify-end my-2">
@@ -115,7 +121,6 @@ const LookDonor = () => {
         </div>
       </div>
       <div className="text-center my-10">
-        
         {/* previous button */}
         <button
           className="btn border-red-400 mx-1"

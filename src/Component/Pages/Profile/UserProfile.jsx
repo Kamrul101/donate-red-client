@@ -21,7 +21,7 @@ const UserProfile = () => {
   
   
   const handleClick = () => {
-    fetch(`http://localhost:5000/user/${userProfile._id}`, {
+    fetch(`https://donate-red-server.vercel.app/user/${userProfile._id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"

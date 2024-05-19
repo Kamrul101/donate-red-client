@@ -25,7 +25,7 @@ const SingleDonor = () => {
     const [reqSent, setReqSent] = useState(false);
     const [req, setReq] = useState(null);
     const [loading, setLoading] = useState(true);
-  const url = `http://localhost:5000/request/${_id}?email=${user?.email}`;
+  const url = `https://donate-red-server.vercel.app/request/${_id}?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -65,7 +65,7 @@ const SingleDonor = () => {
         state: "requested",
         donorContact: contact
       };
-      fetch("http://localhost:5000/request", {
+      fetch("https://donate-red-server.vercel.app/request", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -92,7 +92,7 @@ const SingleDonor = () => {
     
     }
     const sendNotification = async (email, message) => {
-      await fetch('http://localhost:5000/notify', {
+      await fetch('https://donate-red-server.vercel.app/notify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

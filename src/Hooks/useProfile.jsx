@@ -5,7 +5,7 @@ const useProfile = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [userProfile, setUserProfile] = useState(null);
-  const url = `http://localhost:5000/singleUsers/${user?.email}`;
+  const url = `https://donate-red-server.vercel.app/singleUsers/${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())

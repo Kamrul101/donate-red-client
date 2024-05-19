@@ -4,7 +4,7 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 const imageHosting = import.meta.env.VITE_Img;
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import toggle from '../Login/toggle.css'
+import toggle from './toggle.css'
 
 const Register = () => {
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageHosting}`;
@@ -135,7 +135,7 @@ const Register = () => {
             issue: issue,
           };
           
-          fetch("http://localhost:5000/users", {
+          fetch("https://donate-red-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -263,7 +263,7 @@ const Register = () => {
                 {/*Photo File*/}
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Photo URL</span>
+                    <span className="label-text">Upload Photo</span>
                   </label>
                   <input
                     type="file"
@@ -272,6 +272,9 @@ const Register = () => {
                     // value={formData.photo}
                     onChange={handleChange}
                   />
+                  <label className="label">
+                    <span className="text-red-600">**Please choose file less than 500kb or resize in <a href="https://imageresizer.com/" className="underline text-blue-700">here</a></span>
+                  </label>
                 </div>
                 <div className="flex justify-center mt-5">
                   <button
@@ -408,6 +411,9 @@ const Register = () => {
                     <option>Mirpur Thana</option>
                     <option>Pallabi Thana</option>
                     <option>Kafrul Thana</option>
+                    <option>Cantonment Thana</option>
+                    <option>Jatrabari Thana</option>
+                    <option>Tejgaon Thana</option>
                   </select>
                 </div>
                 {/* Last of Donating blood */}
@@ -439,7 +445,7 @@ const Register = () => {
                   <textarea
                     className="textarea textarea-primary"
                     required
-                    placeholder="Bio"
+                    placeholder="Write shortly issues you have.."
                     name="issue"
                     value={formData.issue}
                     onChange={handleChange}

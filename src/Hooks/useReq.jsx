@@ -5,7 +5,7 @@ const useReq = () => {
 const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [req, setReq] = useState([]);
-  const url = `http://localhost:5000/request`;
+  const url = `https://donate-red-server.vercel.app/request`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())

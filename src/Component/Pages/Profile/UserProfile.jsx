@@ -44,6 +44,7 @@ const UserProfile = () => {
                 lastDate: new Date().toISOString().split('T')[0], // Format as YYYY-MM-DD
                 dateDiff: 0  // Resetting the date difference to 0 as the user donated today
             }));
+            
         } else {
             Swal.fire({
                 position: "top-end",
@@ -53,17 +54,18 @@ const UserProfile = () => {
                 timer: 1500,
             });
         }
-    })
-    .catch(error => {
+      })
+      
+      .catch(error => {
         console.error("Error updating donation date and deleting requests:", error);
         Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "An error occurred",
-            showConfirmButton: false,
-            timer: 1500,
+          position: "top-end",
+          icon: "error",
+          title: "An error occurred",
+          showConfirmButton: false,
+          timer: 1500,
         });
-    });
+      });
 };
 
   return (

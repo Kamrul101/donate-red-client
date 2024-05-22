@@ -86,11 +86,11 @@ const DonateRequest = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>User Image</th>
-              <th>Name</th>
-              <th>Email</th>
+              <th>Seeker Image</th>
+              <th>Seeker Name</th>
+              <th>Seeker Email</th>
               <th>State</th>
-              <th>Donor Profile</th>
+              <th>Seeker Profile</th>
             </tr>
           </thead>
           <tbody>
@@ -101,13 +101,13 @@ const DonateRequest = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img
-                        src={r.donorPhoto}
+                        src={r.seekerPhoto}
                         alt="Avatar Tailwind CSS Component"
                       />
                     </div>
                   </div>
                 </div></td>
-                    <td>{r.donorName}</td>
+                    <td>{r.seekerName}</td>
                     <td>{r.seekerEmail}</td>
                     <td>{r.state  === "requested"? (<div>
                     <button 
@@ -120,7 +120,7 @@ const DonateRequest = () => {
                     <FaXmark/></button>
                     </div>):(r.state==="accepted" ?<button className='btn bg-green-700 text-white'>Accepted</button>: <button className='btn btn-error' > Rejected</button>) }</td>
                     <td><button className="btn btn-primary">
-                <Link to={`/singleDonor/${r.donorID}`}>See Profile</Link>
+                <Link to={`/singleDonor/${r.seekerID}`}>See Profile</Link>
               </button></td>
                   </tr>)
             }

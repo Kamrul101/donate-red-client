@@ -1,12 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 const imageHosting = import.meta.env.VITE_Img;
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import toggle from './toggle.css'
+import useGeoLocation from "../../../Hooks/GeoLocation";
 
 const Register = () => {
+  const [latitude,longitude,loading] = useGeoLocation();
+  
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageHosting}`;
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -46,7 +49,17 @@ const Register = () => {
     thana: "",
     lastDate: "",
     issue: "",
+    
   });
+  useEffect(() => {
+    if (latitude && longitude) {
+      setFormData((prevData) => ({
+        ...prevData,
+        latitude: latitude,
+        longitude: longitude,
+      }));
+    }
+  }, [latitude, longitude]);
   const next = () => {
     if (
       formNo === 1 &&
@@ -101,7 +114,10 @@ const Register = () => {
       lastDate,
       issue,
       password,
+      latitude,
+      longitude
     } = formData;
+    
 
     if (formData.password != formData.confirm) {
       Swal.fire({
@@ -133,8 +149,10 @@ const Register = () => {
             thana: thana,
             lastDate: lastDate,
             issue: issue,
+            latitude: latitude,
+            longitude: longitude
           };
-          
+          console.log(saveUser);
           fetch("https://donate-red-server.vercel.app/users", {
             method: "POST",
             headers: {
@@ -156,14 +174,19 @@ const Register = () => {
               }
             });
 
-          navigate("/UserProfile");
-          window.location.reload();
+          navigate("/");
+          // window.location.reload();
           
         });
       });
     } catch (error) {
       console.log(error.message);
     }
+//     if (loading) {
+//       return <div className="flex justify-center items-center h-screen">
+//     <div className="loading loading-ring loading-lg"></div>
+// </div>
+    // }
   };
   return (
     <>

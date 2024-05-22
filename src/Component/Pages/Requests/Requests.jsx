@@ -19,6 +19,7 @@ const Requests = () => {
         <div className="loading loading-ring loading-lg"></div>
     </div>
       }
+     
     return (
         <div className='md:w-3/4 md:mx-auto my-5 border-2 border-red-200 rounded' >
          <div className="overflow-x-auto">

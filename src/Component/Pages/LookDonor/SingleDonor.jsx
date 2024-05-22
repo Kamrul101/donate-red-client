@@ -3,44 +3,53 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
 import useProfile from '../../../Hooks/useProfile';
-
+import GoogleMapReact from 'google-map-react';
+import { FaMapMarker, FaMapMarkerAlt } from "react-icons/fa";
+import { googleMapApi } from './googleMap';
+const AnyReactComponent = ({ text }) => <div className='text-red-600 text-2xl'>{text}</div>;
 
 const SingleDonor = () => {
+
     const singleDonor =  useLoaderData();
     const {user} = useContext(AuthContext);
-    const [userProfile] = useProfile();
+    const [userProfile,loading] = useProfile();
     const singleDonorDetail = singleDonor[0];
     const {
-        _id,
-        name,
-        email,
-        photo,
-        group,
-        dateDiff,
-        thana,
-        lastDate,
-        contact,
-        district
+      _id, name, email, photo, group, dateDiff, thana,lastDate, contact, district
     } = singleDonorDetail;
     const [reqSent, setReqSent] = useState(false);
     const [req, setReq] = useState(null);
-    const [loading, setLoading] = useState(true);
-  const url = `https://donate-red-server.vercel.app/request/${_id}?email=${user?.email}`;
-  useEffect(() => {
-    fetch(url)
+    const [profile, setProfile] = useState(null);
+    const [reqLoading, setReqLoading] = useState(true);
+    const url = `https://donate-red-server.vercel.app/request/${_id}?email=${user?.email}`;
+    useEffect(() => {
+      fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setReq(data);
-        setLoading(false);
+        setReqLoading(false);
       });
   }, [url]);
   
+ 
   useEffect(() => {
-    
-    if (!loading && req.statusReq === true) {
+    if (!reqLoading && req.statusReq === true) {
       setReqSent(true);
     }
-  }, [req, loading]); // Empty dependency array ensures this runs only once on mount
+  }, [req, reqLoading]); // Empty dependency array ensures this runs only once on mount
+
+
+
+
+ const defaultProps = {
+    center: {
+      lat:singleDonorDetail.latitude,
+      lng:singleDonorDetail.longitude
+    },
+    zoom: 16
+  };
+  
+
   const handleClick = async () => {
     if (dateDiff >= 90 && !reqSent) {
       // Send the blood donation request
@@ -53,6 +62,17 @@ const SingleDonor = () => {
       setReqSent(true);
     }
   };
+  useEffect(() => {
+    if (!loading) {
+      setProfile(userProfile[0]);
+    }
+  }, [loading]);
+  if(loading || profile=== null){
+    return <div className="flex justify-center items-center h-screen">
+    <div className="loading loading-ring loading-lg"></div>
+</div>
+  }
+  
   
   const sendRequest= () =>{
       const reqData = {
@@ -63,7 +83,11 @@ const SingleDonor = () => {
         donorPhoto: photo,
         donorEmail: email,
         state: "requested",
-        donorContact: contact
+        donorContact: contact,
+        seekerName: profile.name,
+        seekerPhoto: profile.photo,
+        seekerID  : profile._id
+
       };
       fetch("https://donate-red-server.vercel.app/request", {
       method: "POST",
@@ -102,8 +126,8 @@ const SingleDonor = () => {
     };
     const lastDonateDate = lastDate.slice(0,10);
     return (
-        <div className='md:w-3/4 md:mx-auto my-2 md:my-5'>
-           <div className="md:w-1/2 bg-base-700 shadow-slate-400 shadow-2xl md:mx-auto rounded-lg">
+        <div className='md:w-3/4 md:mx-auto my-2 md:my-5 grid grid-cols-2'>
+           <div className="bg-base-700 shadow-slate-400 shadow-2xl md:mx-auto rounded-lg">
             <figure className='flex justify-center'>
               <img className="md:w-56 md:mt-5 md:mx-auto rounded-lg bg-slate-300" src={photo}></img>
            </figure>
@@ -148,6 +172,19 @@ const SingleDonor = () => {
             </button>
           </div>
           </div>
+          <div className='mt-6 shadow-slate-400 shadow-2xl'>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: googleMapApi }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+          lat={defaultProps.center.lat}
+          lng={defaultProps.center.lng}
+          text={<FaMapMarkerAlt/>}
+        />
+      </GoogleMapReact>
+    </div>
         </div>
     );
 };

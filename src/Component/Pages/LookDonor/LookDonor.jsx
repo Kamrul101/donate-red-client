@@ -56,7 +56,7 @@ const LookDonor = () => {
         <h1 className="text-center text-4xl font-bold text-red-600 font-serif my-6">
           Our Donors
         </h1>
-        <div className="flex md:justify-between flex-col md:flex-row">
+        <div className="flex lg:justify-between flex-col lg:flex-row">
           <div className="join mx-5">
             <select
               name="group"

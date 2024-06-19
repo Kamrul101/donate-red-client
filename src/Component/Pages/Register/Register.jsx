@@ -190,7 +190,7 @@ const Register = () => {
   };
   return (
     <>
-      <div className="card w-full md:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
+      <div className="card w-full md:w-2/3 lg:w-1/3 md:mx-auto shadow-2xl bg-base-100 my-8">
         <div className="card-body !border-red-500">
           <div className="flex justify-center">
             <ul className="steps w-full">

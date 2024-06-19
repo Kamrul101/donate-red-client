@@ -69,11 +69,11 @@ const UserProfile = () => {
 };
 
   return (
-    <div className="md:w-3/4 md:mx-auto my-5">
+    <div className="md:w-3/4 lg:h-[600px] md:flex md:flex-col justify-center md:mx-auto my-5">
       
       {userProfile && (
         <>
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-2 font-serif">
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-2 font-serif ">
             <div className="mx-2 p-4 rounded-md bg-red-100 shadow-slate-400 shadow-xl">
               <img className="mx-auto w-52 rounded-lg" src={userProfile.photo}></img>
               <p className="font-bold text-center text-2xl uppercase mt-4">

@@ -73,8 +73,8 @@ const UserProfile = () => {
       
       {userProfile && (
         <>
-          <div className="grid md:grid-cols-3 gap-2 font-serif">
-            <div className="mx-2 md:mx-auto p-4 rounded-md bg-red-100 shadow-slate-400 shadow-xl">
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-2 font-serif">
+            <div className="mx-2 p-4 rounded-md bg-red-100 shadow-slate-400 shadow-xl">
               <img className="mx-auto w-52 rounded-lg" src={userProfile.photo}></img>
               <p className="font-bold text-center text-2xl uppercase mt-4">
                 <span className="text-gray-500 font-semibold text-2xl"></span>{" "}

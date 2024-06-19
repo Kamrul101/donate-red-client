@@ -5,7 +5,7 @@ import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare, FaYoutubeSquare }
 const Footer = () => {
   return (
     <footer>
-      <div className="footer p-10 bg-neutral text-neutral-content">
+      <div className="footer p-5 bg-neutral text-neutral-content flex flex-col md:flex-row md:justify-evenly md:items-center ">
         <div>
           <img className="rounded-lg" src={logo} alt="" />
           <p>
@@ -15,31 +15,12 @@ const Footer = () => {
           </p>
           
         </div>
+        
         <div>
-          <span className="footer-title">Connect with us</span>
-          <div className="grid grid-flow-col gap-4 text-4xl">
-          <Link to="https://www.instagram.com/">
-              <FaInstagramSquare />
-            </Link>
-
-            <Link to="https://www.facebook.com/">
-              <FaFacebookSquare></FaFacebookSquare>
-            </Link>
-
-            <Link to="https://twitter.com/home">
-              <FaTwitterSquare></FaTwitterSquare>
-            </Link>
-            <Link to="https://www.youtube.com/">
-              <FaYoutubeSquare></FaYoutubeSquare>
-            </Link>
-          </div>
+        <p>&copy; All rights reserved to-2024-Team-Red-ICE-201</p>
         </div>
       </div>
-      <div className="footer-center p-4 bg-base-300 text-base-content">
-        <div>
-        <p>&copy; All rights reserved to-2023-Team-Red</p>
-        </div>
-      </div>
+      
     </footer>
   );
 };

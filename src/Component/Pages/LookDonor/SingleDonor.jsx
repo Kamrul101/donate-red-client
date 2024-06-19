@@ -126,7 +126,8 @@ const SingleDonor = () => {
     };
     const lastDonateDate = lastDate.slice(0,10);
     return (
-        <div className='md:w-3/4 md:mx-auto my-2 md:my-5 grid grid-cols-2'>
+        <div className='md:w-3/4 md:mx-auto my-2 md:my-5 grid grid-cols-1 md:grid-cols-2'>
+           
            <div className="bg-base-700 shadow-slate-400 shadow-2xl md:mx-auto rounded-lg">
             <figure className='flex justify-center'>
               <img className="md:w-56 md:mt-5 md:mx-auto rounded-lg bg-slate-300" src={photo}></img>
@@ -172,7 +173,7 @@ const SingleDonor = () => {
             </button>
           </div>
           </div>
-          <div className='mt-6 shadow-slate-400 shadow-2xl'>
+          <div className='mt-6 shadow-slate-400 shadow-2xl h-3/4' style={{ height: '75vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: googleMapApi }}
         defaultCenter={defaultProps.center}
@@ -185,6 +186,7 @@ const SingleDonor = () => {
         />
       </GoogleMapReact>
     </div>
+          
         </div>
     );
 };

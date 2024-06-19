@@ -7,7 +7,7 @@ const DonorCard = ({ donor }) => {
 
   return (
     <div>
-      <div className="card card-compact w-3/4 mx-auto md:w-72 
+      <div className="card card-compact w-full mx-auto md:w-72 
       shadow-md shadow-red-300 border-rose-200 border-2">
         <figure>
           <img src={photo} alt="Shoes" className="w-52 h-64 mt-2 rounded-md bg-cyan-200" />

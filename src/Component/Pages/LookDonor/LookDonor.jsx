@@ -114,7 +114,7 @@ const LookDonor = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-6 md:justify-between">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
           {donors.map((donor) => {
             return <DonorCard key={donor._id} donor={donor} />;
           })}

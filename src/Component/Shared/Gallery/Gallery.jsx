@@ -1,5 +1,5 @@
 import React from 'react';
-import gallery  from './styleGallery.css'
+
 const img1 ='https://i.ibb.co/ZLVBWgf/1.jpg'
 
 const img4 = 'https://i.ibb.co/bmrw5xs/4.jpg'

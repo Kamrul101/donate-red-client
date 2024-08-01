@@ -4,7 +4,7 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 const imageHosting = import.meta.env.VITE_Img;
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import toggle from './toggle.css'
+
 import useGeoLocation from "../../../Hooks/GeoLocation";
 
 const Register = () => {
@@ -166,7 +166,7 @@ const Register = () => {
                 Swal.fire({
                   position: "top-end",
                   icon: "success",
-                  title: "Your work has been saved",
+                  title: "Registration Successful",
                   showConfirmButton: false,
                   timer: 1500,
                 });
@@ -182,11 +182,7 @@ const Register = () => {
     } catch (error) {
       console.log(error.message);
     }
-//     if (loading) {
-//       return <div className="flex justify-center items-center h-screen">
-//     <div className="loading loading-ring loading-lg"></div>
-// </div>
-    // }
+
   };
   return (
     <>

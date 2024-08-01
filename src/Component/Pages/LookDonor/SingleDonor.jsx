@@ -18,7 +18,7 @@ const SingleDonor = () => {
       _id, name, email, photo, group, dateDiff, thana,lastDate, contact, district
     } = singleDonorDetail;
     const [reqSent, setReqSent] = useState(false);
-    const [req, setReq] = useState(null);
+    const [req, setReq] = useState(null); 
     const [profile, setProfile] = useState(null);
     const [reqLoading, setReqLoading] = useState(true);
     const url = `https://donate-red-server.vercel.app/request/${_id}?email=${user?.email}`;

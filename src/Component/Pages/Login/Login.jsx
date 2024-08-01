@@ -4,6 +4,7 @@ import { FaBeer,FaEye,FaEyeSlash,FaGoogle  } from 'react-icons/fa';
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { GoogleAuthProvider } from "firebase/auth";
 import toggle from './toggle.css'
+import Swal from "sweetalert2";
 const Login = () => {
 
     const googleProvider = new GoogleAuthProvider();
@@ -31,12 +32,29 @@ const Login = () => {
     .then(result =>{
       const loggedUser = result.user;
           
-      console.log(loggedUser);
+      // console.log(loggedUser);
+      if(loggedUser){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
       navigate(from, {replace:true})
     })
-    .catch(error=>{
-      
-      setError('Email or password did not match',error)
+    .catch(err=>{
+      setError('Email or password did not match',err)
+      if(err){
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Email or password did not match",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     })
 
    }
@@ -81,6 +99,7 @@ const Login = () => {
                 placeholder="email"
                 name="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -93,6 +112,7 @@ const Login = () => {
                 placeholder="password"
                 name="password"
                 className="input input-bordered"
+                required
               />
 
              

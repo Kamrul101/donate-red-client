@@ -1,11 +1,3 @@
-
-# Bucket Head
-
-- This website can offer you some best Class
-- You can see our class
-- You can see our instructor
-- Admin and Instructor route is available
-- We have 2 types of login option(Email/Password, Google)
 # Donate Red
 
 - Blood donation is a vital, life-saving process, yet inefficiencies and delays often interrupt timely donations. This project aims to develop a web-based blood donation application using modern technologies to streamline blood donation. The application will enhance efficiency by providing real-time updates, filtering donors by blood type and location, and enabling direct communication between donors and seekers. This project includes features like:
